@@ -1,0 +1,131 @@
+/* ─── Theme Imports ────────────────────────────────────────────────────────── */
+@import 'primereact/resources/themes/lara-light-blue/theme.css' layer(primereact);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer tailwind-base, primereact, tailwind-utilities;
+
+@layer tailwind-base {
+    @tailwind base;
+}
+
+@layer tailwind-utilities {
+    @tailwind components;
+    @tailwind utilities;
+}
+
+/* ─── CSS Custom Properties (set by CLI placeholders) ──────────────────────── */
+:root {
+    --brand: {
+            {
+            BRAND_COLOR
+        }
+    }
+
+    ;
+
+    --brand-dark: {
+            {
+            BRAND_COLOR_DARK
+        }
+    }
+
+    ;
+
+    --brand-light: {
+            {
+            BRAND_COLOR_LIGHT
+        }
+    }
+
+    ;
+
+    --bg: {
+            {
+            BG_COLOR
+        }
+    }
+
+    ;
+}
+
+/* ─── Base Styles ──────────────────────────────────────────────────────────── */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    min-height: 100vh;
+}
+
+/* ─── Brand Utilities ──────────────────────────────────────────────────────── */
+.bg-brand {
+    background-color: var(--brand);
+}
+
+.text-brand {
+    color: var(--brand);
+}
+
+/* ─── PrimeReact DataTable Theme ───────────────────────────────────────────── */
+.p-datatable .p-datatable-thead>tr>th {
+    background-color: var(--brand) !important;
+    color: white !important;
+}
+
+.p-datatable .p-datatable-tbody>tr:nth-child(even) {
+    background-color: var(--bg) !important;
+}
+
+.p-datatable .p-datatable-tbody>tr:hover {
+    background-color: #DCE3DF !important;
+}
+
+.p-datatable .p-sortable-column:hover {
+    background-color: var(--brand-dark) !important;
+}
+
+.p-datatable .p-highlight {
+    background-color: var(--brand-light) !important;
+    color: var(--brand) !important;
+}
+
+/* ─── PrimeReact Paginator Theme ───────────────────────────────────────────── */
+.p-paginator .p-paginator-current {
+    color: var(--brand);
+}
+
+.p-paginator .p-paginator-page.p-highlight {
+    background-color: var(--brand) !important;
+    border-color: var(--brand) !important;
+}
+
+/* ─── PrimeReact Button Theme ──────────────────────────────────────────────── */
+.p-button.p-button-info {
+    background-color: var(--brand) !important;
+    border-color: var(--brand) !important;
+}
+
+.p-button.p-button-info:hover {
+    background-color: var(--brand-dark) !important;
+    border-color: var(--brand-dark) !important;
+}
+
+/* ─── PrimeReact Input Theme ───────────────────────────────────────────────── */
+.p-inputtext:focus {
+    border-color: var(--brand) !important;
+    box-shadow: 0 0 0 2px rgba(0, 171, 230, 0.2) !important;
+}
+
+/* ─── PrimeReact Checkbox Theme ────────────────────────────────────────────── */
+.p-checkbox .p-checkbox-box.p-highlight {
+    background-color: var(--brand) !important;
+    border-color: var(--brand) !important;
+}
+
+/* ─── PrimeReact Selection Row Theme ───────────────────────────────────────── */
+.p-datatable .p-datatable-tbody>tr.p-highlight {
+    background-color: rgba(0, 171, 230, 0.1) !important;
+}
+
+.p-datatable .p-datatable-tbody>tr.p-highlight>td {
+    color: inherit !important;
+}

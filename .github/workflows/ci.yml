@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-validate:
+    name: Lint & Validate
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18, 20, 22]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate CLI syntax
+        run: node --check bin/cli.js
+
+      - name: Validate backend templates
+        run: |
+          for file in templates/backend/**/*.js; do
+            node --check "$file" && echo "✅ $file"
+          done
+
+      - name: Validate template structure
+        run: |
+          echo "Checking required files..."
+          test -f bin/cli.js && echo "✅ bin/cli.js"
+          test -f templates/backend/server.js && echo "✅ backend/server.js"
+          test -f templates/backend/seed.js && echo "✅ backend/seed.js"
+          test -f templates/backend/.env.example && echo "✅ backend/.env.example"
+          test -f templates/frontend/index.html && echo "✅ frontend/index.html"
+          test -f templates/frontend/src/App.jsx && echo "✅ frontend/src/App.jsx"
+          test -f templates/frontend/src/main.jsx && echo "✅ frontend/src/main.jsx"
+          echo "All required files present ✅"
+
+      - name: Check for placeholder consistency
+        run: |
+          echo "Verifying all placeholders are documented..."
+          PLACEHOLDERS=$(grep -roh '{{[A-Z_]*}}' templates/ | sort -u)
+          echo "Found placeholders:"
+          echo "$PLACEHOLDERS"
+          # Ensure each placeholder exists in the CLI
+          for ph in $PLACEHOLDERS; do
+            if grep -q "$ph" bin/cli.js; then
+              echo "✅ $ph is handled in CLI"
+            else
+              echo "❌ $ph is NOT handled in CLI"
+              exit 1
+            fi
+          done

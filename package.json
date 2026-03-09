@@ -1,0 +1,51 @@
+{
+  "name": "fullstack-crud",
+  "version": "1.0.0",
+  "description": "Scaffold a production-ready full-stack CRUD application with React + Express + MongoDB — JWT auth, role-based access, PrimeReact UI, and more out of the box.",
+  "type": "module",
+  "main": "bin/cli.js",
+  "bin": {
+    "fullstack-crud": "bin/cli.js"
+  },
+  "scripts": {
+    "create": "node bin/cli.js",
+    "lint": "eslint bin/ --ext .js",
+    "test": "node --test tests/"
+  },
+  "keywords": [
+    "fullstack",
+    "crud",
+    "react",
+    "express",
+    "mongodb",
+    "scaffold",
+    "generator",
+    "primereact",
+    "jwt",
+    "authentication",
+    "admin-panel",
+    "boilerplate"
+  ],
+  "author": {
+    "name": "Dante Castelao",
+    "url": "https://github.com/DanteCastelao"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "fs-extra": "^11.2.0",
+    "inquirer": "^9.2.15",
+    "ora": "^8.0.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanteCastelao/fullstack-crud.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DanteCastelao/fullstack-crud/issues"
+  },
+  "homepage": "https://github.com/DanteCastelao/fullstack-crud#readme"
+}
